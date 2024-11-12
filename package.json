@@ -50,7 +50,7 @@
     "concurrently": "^8.0.1",
     "cross-env": "^7.0.3",
     "esbuild": "^0.17.18",
-    "eslint": "^8.40.0",
+    "eslint": "^9.14.0",
     "eslint-config-prettier": "^8.8.0",
     "minimist": "^1.2.8",
     "prettier": "2.8.8",
