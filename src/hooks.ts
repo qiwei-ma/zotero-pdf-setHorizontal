@@ -1,10 +1,17 @@
-
-import { config } from "../package.json";
+import {
+  BasicExampleFactory,
+  HelperExampleFactory,
+  KeyExampleFactory,
+  PromptExampleFactory,
+  UIExampleFactory,
+} from "./modules/examples";
 import { getString, initLocale } from "./utils/locale";
-import { registerPrefsScripts } from "./modules/preferenceScript";
+import { registerPrefsScripts, registerPreferenceListeners } from "./modules/preferenceScript";
 import { createZToolkit } from "./utils/ztoolkit";
-import { PdfViewDefaults, } from "./modules/pdfviewdefaults";
 
+import { PDFPreviewHandler } from "./modules/PDFPreviewHandler";
+import { PDFStateInitializer } from "./modules/pdfstateinitializer";
+import { getPref } from "./utils/prefs";
 async function onStartup() {
   await Promise.all([
     Zotero.initializationPromise,
@@ -14,23 +21,40 @@ async function onStartup() {
 
   initLocale();
 
+  BasicExampleFactory.registerPrefs();
+
+  // BasicExampleFactory.registerNotifier();
+
+  // KeyExampleFactory.registerShortcuts();
+
+  // await UIExampleFactory.registerExtraColumn();
+
+  // await UIExampleFactory.registerExtraColumnWithCustomCell();
+
+  // UIExampleFactory.registerItemPaneCustomInfoRow();
+
+  // UIExampleFactory.registerItemPaneSection();
+
+  // UIExampleFactory.registerReaderItemPaneSection();
+
   await Promise.all(
     Zotero.getMainWindows().map((win) => onMainWindowLoad(win)),
   );
+
+  // PDFPreviewHandler.init(); // 新增初始化
+  // PDFStateInitializer.init();
 }
 
-async function onMainWindowLoad(win: Window): Promise<void> {
-  
-  // 
-  // PdfViewDefaults.registerSetter();
-  PdfViewDefaults.registerSetter(win);
+async function onMainWindowLoad(win: _ZoteroTypes.MainWindow): Promise<void> {
   // Create ztoolkit for every window
   addon.data.ztoolkit = createZToolkit();
 
   // @ts-ignore This is a moz feature
-  win.MozXULElement.insertFTLIfNeeded(`${config.addonRef}-mainWindow.ftl`);
+  win.MozXULElement.insertFTLIfNeeded(
+    `${addon.data.config.addonRef}-mainWindow.ftl`,
+  );
 
-  const popupWin = new ztoolkit.ProgressWindow(config.addonName, {
+  const popupWin = new ztoolkit.ProgressWindow(addon.data.config.addonName, {
     closeOnClick: true,
     closeTime: -1,
   })
@@ -47,12 +71,38 @@ async function onMainWindowLoad(win: Window): Promise<void> {
     text: `[30%] ${getString("startup-begin")}`,
   });
 
+  // UIExampleFactory.registerStyleSheet(win);
+
+  // UIExampleFactory.registerRightClickMenuItem();
+
+  // UIExampleFactory.registerRightClickMenuPopup(win);
+
+  // UIExampleFactory.registerWindowMenuWithSeparator();
+
+  // PromptExampleFactory.registerNormalCommandExample();
+
+  // PromptExampleFactory.registerAnonymousCommandExample(win);
+
+  // PromptExampleFactory.registerConditionalCommandExample();
+
   await Zotero.Promise.delay(1000);
+
   popupWin.changeLine({
     progress: 100,
     text: `[100%] ${getString("startup-finish")}`,
   });
   popupWin.startCloseTimer(5000);
+
+  // addon.hooks.onDialogEvents("dialogExample");
+
+  registerPreferenceListeners(win)
+  ztoolkit.log("============================================================================")
+  ztoolkit.log("============================================================================");
+
+  ztoolkit.log("预置首选项", getPref("pdfPreview.enabled"));
+  ztoolkit.log("预置初始化首选项", getPref("pdfStateInit.enabled"));
+  PDFPreviewHandler.init();
+  PDFStateInitializer.init();
 }
 
 async function onMainWindowUnload(win: Window): Promise<void> {
@@ -65,9 +115,32 @@ function onShutdown(): void {
   addon.data.dialog?.window?.close();
   // Remove addon object
   addon.data.alive = false;
-  delete Zotero[config.addonInstance];
+  // @ts-ignore - Plugin instance is not typed
+  delete Zotero[addon.data.config.addonInstance];
 }
 
+/**
+ * This function is just an example of dispatcher for Notify events.
+ * Any operations should be placed in a function to keep this funcion clear.
+ */
+async function onNotify(
+  event: string,
+  type: string,
+  ids: Array<string | number>,
+  extraData: { [key: string]: any },
+) {
+  // You can add your code to the corresponding notify type
+  ztoolkit.log("notify", event, type, ids, extraData);
+  if (
+    event == "select" &&
+    type == "tab" &&
+    extraData[ids[0]].type == "reader"
+  ) {
+    BasicExampleFactory.exampleNotifierCallback();
+  } else {
+    return;
+  }
+}
 
 /**
  * This function is just an example of dispatcher for Preference UI events.
@@ -79,12 +152,47 @@ async function onPrefsEvent(type: string, data: { [key: string]: any }) {
   switch (type) {
     case "load":
       registerPrefsScripts(data.window);
+      // registerPreferenceListeners(data.window);
       break;
     default:
       return;
   }
 }
 
+function onShortcuts(type: string) {
+  switch (type) {
+    case "larger":
+      KeyExampleFactory.exampleShortcutLargerCallback();
+      break;
+    case "smaller":
+      KeyExampleFactory.exampleShortcutSmallerCallback();
+      break;
+    default:
+      break;
+  }
+}
+
+function onDialogEvents(type: string) {
+  switch (type) {
+    case "dialogExample":
+      HelperExampleFactory.dialogExample();
+      break;
+    case "clipboardExample":
+      HelperExampleFactory.clipboardExample();
+      break;
+    case "filePickerExample":
+      HelperExampleFactory.filePickerExample();
+      break;
+    case "progressWindowExample":
+      HelperExampleFactory.progressWindowExample();
+      break;
+    case "vtableExample":
+      HelperExampleFactory.vtableExample();
+      break;
+    default:
+      break;
+  }
+}
 
 // Add your hooks here. For element click, etc.
 // Keep in mind hooks only do dispatch. Don't add code that does real jobs in hooks.
@@ -95,5 +203,8 @@ export default {
   onShutdown,
   onMainWindowLoad,
   onMainWindowUnload,
+  onNotify,
   onPrefsEvent,
-}
+  onShortcuts,
+  onDialogEvents,
+};

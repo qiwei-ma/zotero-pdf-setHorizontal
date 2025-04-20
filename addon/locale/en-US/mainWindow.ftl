@@ -8,3 +8,7 @@ item-section-example2-sidenav-tooltip =
     .tooltiptext = This is Plugin Template section (reader)
 item-section-example2-button-tooltip =
     .tooltiptext = Unregister this section
+item-info-row-example-label = Example Row
+
+
+restart-required = 更改将在重新启动 Zotero 后生效。

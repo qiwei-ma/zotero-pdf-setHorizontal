@@ -1,0 +1,44 @@
+<linkset>
+  <html:link rel="localization" href="__addonRef__-preferences.ftl" />
+</linkset>
+<vbox id="zotero-prefpane-__addonRef__" onload="Zotero.__addonInstance__.hooks.onPrefsLoad(event)">
+  <groupbox>
+    <label>
+      <html:h2 data-l10n-id="basic-title"></html:h2>
+    </label>
+    <checkbox id="__addonRef__-enablePDFPreview" preference="__prefsPrefix__.pdfPreview.enabled"
+      data-l10n-id="pdfPreviewEnabled" native="true" />
+    <checkbox id="__addonRef__-enablePDFStateInit" preference="__prefsPrefix__.pdfStateInit.enabled"
+      data-l10n-id="pdfStateInitEnabled" native="true" />
+  </groupbox>
+  <groupbox>
+    <label>
+      <html:h2 data-l10n-id="title1"></html:h2>
+    </label>
+      <menulist native="true" id="__addonRef__-scrollMode" preference="__prefsPrefix__.pdfPrefs.scrollMode">
+        <menupopup>
+          <menuitem value="1" data-l10n-id="scrollModeHorizontal">
+          </menuitem>
+          <menuitem value="0" data-l10n-id="scrollModeVertical">
+          </menuitem>
+        </menupopup>
+      </menulist>
+  </groupbox>
+  <groupbox>
+      <label>
+        <html:h2 data-l10n-id="title2"></html:h2>
+      </label>
+      <menulist native="true" id="__addonRef__-scaleMode" preference="__prefsPrefix__.pdfPrefs.scale">
+        <menupopup>
+          <menuitem value="page-height" data-l10n-id="scalePageHeight">
+          </menuitem>
+          <menuitem value="page-width" data-l10n-id="scalePageWidth">
+          </menuitem>
+        </menupopup>
+      </menulist>
+  </groupbox>
+  <vbox>
+    <html:label data-l10n-id="info" />
+  </vbox>
+
+</vbox>

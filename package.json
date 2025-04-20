@@ -1,9 +1,9 @@
 {
-  "name": "Set Horizontal Scrolling",
-  "version": "3.0.1",
-  "description": "only for setting the PDF view to horizontal scrolling and zooming to the page height as default.",
+  "name": "set-horizontal-scrolling",
+  "version": "0.0.1",
+  "description": "Set horizontal scrolling and zooming to the page height as defaults.",
   "config": {
-    "addonName": "pdf-setHorizontalScroll",
+    "addonName": "Set HorizontalScroll",
     "addonID": "pdfsethorizontalscroll@euclpts.com",
     "addonRef": "pdfsethorizontalscroll",
     "addonInstance": "pdfsethorizontalscroll",
@@ -11,34 +11,35 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/windingwind/zotero-plugin-template.git"
+    "url": "git+https://github.com/qiwei-ma/zotero-pdf-setHorizontal.git"
   },
-  "author": "windingwind",
+  "author": "qiwei",
   "bugs": {
-    "url": "https://github.com/windingwind/zotero-plugin-template/issues"
+    "url": "https://github.com/qiwei-ma/zotero-pdf-setHorizontal/issues"
   },
-  "homepage": "https://github.com/windingwind/zotero-plugin-template#readme",
+  "homepage": "https://github.com/qiwei-ma/zotero-pdf-setHorizontal#readme",
   "license": "AGPL-3.0-or-later",
   "scripts": {
     "start": "zotero-plugin serve",
-    "build": "tsc --noEmit && zotero-plugin build",
-    "lint": "prettier --write . && eslint . --fix",
+    "build": "zotero-plugin build && tsc --noEmit",
+    "lint:check": "prettier --check . && eslint .",
+    "lint:fix": "prettier --write . && eslint . --fix",
     "release": "zotero-plugin release",
     "test": "echo \"Error: no test specified\" && exit 1",
     "update-deps": "npm update --save"
   },
   "dependencies": {
-    "zotero-plugin-toolkit": "^4.1.1"
+    "zotero-plugin-toolkit": "^5.0.0-0"
   },
   "devDependencies": {
-    "@eslint/js": "^9.20.0",
-    "@types/node": "^22.7.4",
-    "eslint": "^9.20.0",
-    "prettier": "^3.3.3",
-    "typescript": "^5.6.2",
-    "typescript-eslint": "^8.24.0",
-    "zotero-plugin-scaffold": "^0.1.6",
-    "zotero-types": "^3.1.7"
+    "@eslint/js": "^9.24.0",
+    "@types/node": "^22.14.0",
+    "eslint": "^9.24.0",
+    "prettier": "^3.5.3",
+    "typescript": "^5.8.3",
+    "typescript-eslint": "^8.29.1",
+    "zotero-plugin-scaffold": "^0.4.2",
+    "zotero-types": "^4.0.0-beta.3"
   },
   "prettier": {
     "printWidth": 80,
