@@ -28,7 +28,6 @@ async function onStartup() {
   await Promise.all(
     Zotero.getMainWindows().map((win) => onMainWindowLoad(win)),
   );
-  
 }
 
 async function onMainWindowLoad(win: _ZoteroTypes.MainWindow): Promise<void> {
@@ -41,7 +40,9 @@ async function onMainWindowLoad(win: _ZoteroTypes.MainWindow): Promise<void> {
   );
 
   // registerPreferenceListeners(win)
-  ztoolkit.log("============================================================================")
+  ztoolkit.log(
+    "============================================================================",
+  );
   ztoolkit.log("预置每次打开首选项", getPref("pdfPreview.enabled"));
   ztoolkit.log("预置初始化首选项", getPref("pdfStateInit.enabled"));
   PDFPreviewHandler.init();

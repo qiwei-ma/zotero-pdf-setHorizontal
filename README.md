@@ -5,7 +5,7 @@
 
 This is a plugin for [Zotero](https://www.zotero.org/).
 
-[English](README.md) | [简体中文](doc/README-zhCN.md)
+[English](README.md) | [简体中文](README-zhCN.md)
 
 > [!tip]
 > 👁 Add Wrapped Scrolling and Automaticlly Resize.
@@ -22,7 +22,6 @@ This is a plugin for [Zotero](https://www.zotero.org/).
 ![1745154524765](image/README/pref.png)
 
 ### Example of Auto Set View When Item First added
-
 
 ![1745157143167](image/README/1745157143167.gif)
 

@@ -7,7 +7,7 @@ export function registerPreferenceListeners(window: Window) {
 
   // 监听“启用 PDF 预览”复选框
   const checkboxPDFPreview = doc.querySelector<HTMLInputElement>(
-    `#${config.addonRef}-enablePDFPreview`
+    `#${config.addonRef}-enablePDFPreview`,
   );
   checkboxPDFPreview?.addEventListener("command", (e: Event) => {
     const checked = (e.target as HTMLInputElement).checked;
@@ -17,7 +17,7 @@ export function registerPreferenceListeners(window: Window) {
 
   // 监听“启用 PDF 状态初始化”复选框
   const checkboxPDFStateInit = doc.querySelector<HTMLInputElement>(
-    `#${config.addonRef}-enablePDFStateInit`
+    `#${config.addonRef}-enablePDFStateInit`,
   );
   checkboxPDFStateInit?.addEventListener("command", (e: Event) => {
     const checked = (e.target as HTMLInputElement).checked;
@@ -27,7 +27,7 @@ export function registerPreferenceListeners(window: Window) {
 
   // 监听 scrollMode 下拉框的变化
   const scrollMode = doc.querySelector<HTMLInputElement>(
-    `#${config.addonRef}-scrollMode`
+    `#${config.addonRef}-scrollMode`,
   );
   scrollMode?.addEventListener("command", (e: Event) => {
     const value = Number((e.target as HTMLInputElement).value);
@@ -37,7 +37,7 @@ export function registerPreferenceListeners(window: Window) {
 
   // 监听 scaleMode 下拉框的变化
   const scaleMode = doc.querySelector<HTMLInputElement>(
-    `#${config.addonRef}-scaleMode`
+    `#${config.addonRef}-scaleMode`,
   );
   scaleMode?.addEventListener("command", (e: Event) => {
     const value = (e.target as HTMLInputElement).value;
