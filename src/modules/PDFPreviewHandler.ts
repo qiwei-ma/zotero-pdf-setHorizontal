@@ -1,6 +1,6 @@
 import { getLocaleID, getString } from "../utils/locale";
 import { getPref } from "../utils/prefs";
-let enable = getPref("pdfPreview.enabled");
+const enable = getPref("pdfPreview.enabled");
 
 export class PDFPreviewHandler {
     private static initialized = false;
@@ -42,7 +42,7 @@ export class PDFPreviewHandler {
 
     private static async handlePDFOpen(itemIDs: number[], tabID?: string) {
 
-        let enable = getPref("pdfPreview.enabled");
+        const enable = getPref("pdfPreview.enabled");
         ztoolkit.log("handle PDFOpen enable:", enable);
         if (!enable) {
             ztoolkit.log("PDF 预览功能未启用，跳过处理");
@@ -144,8 +144,8 @@ export class PDFPreviewHandler {
 
     private static applyPreviewSettings(pdfViewer: any, retry = 0) {
 
-        let scrollMode = getPref("pdfPrefs.scrollMode");
-        let scale = getPref("pdfPrefs.scale");
+        const scrollMode = getPref("pdfPrefs.scrollMode");
+        const scale = getPref("pdfPrefs.scale");
 
         ztoolkit.log("开始等待 PDFViewer 初始化");
         ztoolkit.log("PDFViewer 已初始化");

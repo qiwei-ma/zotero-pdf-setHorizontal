@@ -1,9 +1,9 @@
 import { getPref } from "../utils/prefs";
 
-let scrollMode = getPref("pdfPrefs.scrollMode");
-let scale = getPref("pdfPrefs.scale");
-let zoom = getPref("pdfPrefs.scale");
-let enable = getPref("pdfStateInit.enabled")
+const scrollMode = getPref("pdfPrefs.scrollMode");
+const scale = getPref("pdfPrefs.scale");
+const zoom = getPref("pdfPrefs.scale");
+const enable = getPref("pdfStateInit.enabled")
 
 
 export class PDFStateInitializer {

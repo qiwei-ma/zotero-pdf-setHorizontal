@@ -4,25 +4,33 @@ pref-enable =
 pref-input = Input
 pref-help = { $name } Build { $version } { $time }
 
-basic-title = Automatically Set View
+basic-title = Automatically Set PDF View When:
+title3 = Other Settings
 title1 = Scroll Mode
 title2 = Scale Mode
 pdfPreviewEnabled =
     .label = Everytime Open Tab
 
 pdfStateInitEnabled =
-    .label = Item First added 
+    .label = Item First Added 
 
-scrollModeLabel =
-    .label = Scroll Mode
 
-scrollModeHorizontal = Horizontal Scrolling
-scrollModeVertical = Vertical Scrolling
+scrollModeHorizontal =
+    .label = Horizontal Scrolling
+scrollModeVertical =
+    .label = Vertical Scrolling
+scrollModeWrapped =
+    .label = Wrapped Scrolling
 
-scaleLabel =
-    .label = Scale Mode
 
-scalePageHeight = Zoom to Page Height
-scalePageWidth = Zoom to Page Width
+scalePageHeight =
+    .label = Zoom to Page Height
+scalePageWidth =
+    .label = Zoom to Page Width
+scaleAuto =
+    .label = Automatically Resize
 
-info = 🚨Customizing scroll direction and zoom scale is currently unstable and may occasionally cause items to fail to open. This will be fixed as soon as possible.
+handToolEnabled =
+    .label = Enable Hand Tool Automatically
+
+info = 🚨"Item First Added" is recommended. Enable "Everytime Open Tab" and "Itme First Added" in the same time may occasionally cause items to fail to open. 

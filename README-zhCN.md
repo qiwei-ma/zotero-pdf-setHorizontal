@@ -3,21 +3,21 @@
 [![zotero target version](https://img.shields.io/badge/Zotero-7-green?style=flat-square&logo=zotero&logoColor=CC2936)](https://www.zotero.org)
 [![Using Zotero Plugin Template](https://img.shields.io/badge/Using-Zotero%20Plugin%20Template-blue?style=flat-square&logo=github)](https://github.com/windingwind/zotero-plugin-template)
 
-[English](README.md) | [简体中文](doc/README-zhCN.md) | [Français](doc/README-frFR.md)
+[English](README.md) | [简体中文](doc/README-zhCN.md)
 
 > [!tip]
-> 👁进行自定义滚动方向和缩放尺度暂时并不稳定，有几率导致条目无法打开。这将被尽快修复。
-
+> 👁 新增覆盖滚动和自动调整缩放大小
 # 特性
 
-- ⭐ [New!]  在加入条目时（包含使用Zotero Connector），自动设置View(推荐使用此方式)
-- 每次打开条目时自动设置（当前并不稳定，谨慎使用）
+- ⭐ [New!] 自动设置手型工具
+- 当新添加条目时（包含使用Zotero Connector），自动设置View(推荐使用此方式)
+- 同时打开"当新添加条目时自动设置"和"每次打开标签页重设", 并不稳定，谨慎使用
 
 ## 示例
 
 ### 首选项示例
 
-![1745154524765](image/README/1745154524765.png)
+![1745154524765](image/README/pref.png)
 
 ### 首次加入示例
 

@@ -1,44 +1,107 @@
 <linkset>
   <html:link rel="localization" href="__addonRef__-preferences.ftl" />
 </linkset>
-<vbox id="zotero-prefpane-__addonRef__" onload="Zotero.__addonInstance__.hooks.onPrefsLoad(event)">
-  <groupbox>
-    <label>
-      <html:h2 data-l10n-id="basic-title"></html:h2>
-    </label>
-    <checkbox id="__addonRef__-enablePDFPreview" preference="__prefsPrefix__.pdfPreview.enabled"
-      data-l10n-id="pdfPreviewEnabled" native="true" />
-    <checkbox id="__addonRef__-enablePDFStateInit" preference="__prefsPrefix__.pdfStateInit.enabled"
-      data-l10n-id="pdfStateInitEnabled" native="true" />
-  </groupbox>
-  <groupbox>
-    <label>
-      <html:h2 data-l10n-id="title1"></html:h2>
-    </label>
-      <menulist native="true" id="__addonRef__-scrollMode" preference="__prefsPrefix__.pdfPrefs.scrollMode">
-        <menupopup>
-          <menuitem value="1" data-l10n-id="scrollModeHorizontal">
-          </menuitem>
-          <menuitem value="0" data-l10n-id="scrollModeVertical">
-          </menuitem>
-        </menupopup>
-      </menulist>
-  </groupbox>
-  <groupbox>
+<vbox
+  id="zotero-prefpane-__addonRef__"
+  onload="Zotero.__addonInstance__.hooks.onPrefsEvent('load', { window });"
+  style="padding: 15px"
+>
+  <groupbox style="margin-bottom: 15px">
+    <caption>
       <label>
-        <html:h2 data-l10n-id="title2"></html:h2>
+        <html:h2
+          data-l10n-id="basic-title"
+          style="margin: 0; font-size: 1.2em"
+        ></html:h2>
       </label>
-      <menulist native="true" id="__addonRef__-scaleMode" preference="__prefsPrefix__.pdfPrefs.scale">
+    </caption>
+    <vbox>
+      <checkbox
+        id="__addonRef__-enablePDFPreview"
+        preference="__prefsPrefix__.pdfPreview.enabled"
+        data-l10n-id="pdfPreviewEnabled"
+        native="true"
+      />
+      <checkbox
+        id="__addonRef__-enablePDFStateInit"
+        preference="__prefsPrefix__.pdfStateInit.enabled"
+        data-l10n-id="pdfStateInitEnabled"
+        native="true"
+      />
+    </vbox>
+  </groupbox>
+
+  <groupbox>
+    <caption>
+      <label>
+        <html:h2
+          data-l10n-id="title1"
+          style="margin: 0; font-size: 1.2em"
+        ></html:h2>
+      </label>
+    </caption>
+    <vbox>
+      <menulist
+        native="true"
+        id="__addonRef__-scrollMode"
+        preference="__prefsPrefix__.pdfPrefs.scrollMode"
+        value="1"
+        style="min-width: 200px"
+      >
         <menupopup>
-          <menuitem value="page-height" data-l10n-id="scalePageHeight">
-          </menuitem>
-          <menuitem value="page-width" data-l10n-id="scalePageWidth">
-          </menuitem>
+          <menuitem value="1" data-l10n-id="scrollModeHorizontal" />
+          <menuitem value="0" data-l10n-id="scrollModeVertical" />
+          <menuitem value="2" data-l10n-id="scrollModeWrapped" />
         </menupopup>
       </menulist>
+    </vbox>
   </groupbox>
-  <vbox>
-    <html:label data-l10n-id="info" />
-  </vbox>
 
+  <groupbox style="margin-bottom: 15px">
+    <caption>
+      <label>
+        <html:h2
+          data-l10n-id="title2"
+          style="margin: 0; font-size: 1.2em"
+        ></html:h2>
+      </label>
+    </caption>
+    <vbox>
+      <menulist
+        native="true"
+        id="__addonRef__-scaleMode"
+        preference="__prefsPrefix__.pdfPrefs.scale"
+        value="page-height"
+        style="min-width: 200px"
+      >
+        <menupopup>
+          <menuitem value="page-height" data-l10n-id="scalePageHeight" />
+          <menuitem value="page-width" data-l10n-id="scalePageWidth" />
+          <menuitem value="auto" data-l10n-id="scaleAuto" />
+        </menupopup>
+      </menulist>
+    </vbox>
+  </groupbox>
+  <groupbox style="margin-bottom: 15px">
+    <caption>
+      <label>
+        <html:h2
+          data-l10n-id="title3"
+          style="margin: 0; font-size: 1.2em"
+        ></html:h2>
+      </label>
+    </caption>
+    <vbox>
+      <checkbox
+        id="__addonRef__-enableHandTool"
+        preference="__prefsPrefix__.pdfPrefs.handTool"
+        data-l10n-id="handToolEnabled"
+        native="true"
+        style="margin-top: 5px"
+      />
+    </vbox>
+  </groupbox>
+  <description style="color: red; font-style: italic; margin-top: 10px">
+    <html:label data-l10n-id="info" />
+  </description>
 </vbox>

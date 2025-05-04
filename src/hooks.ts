@@ -6,12 +6,14 @@ import {
   UIExampleFactory,
 } from "./modules/examples";
 import { getString, initLocale } from "./utils/locale";
-import { registerPrefsScripts, registerPreferenceListeners } from "./modules/preferenceScript";
+import { registerPreferenceListeners } from "./modules/preferenceScript";
 import { createZToolkit } from "./utils/ztoolkit";
 
 import { PDFPreviewHandler } from "./modules/PDFPreviewHandler";
 import { PDFStateInitializer } from "./modules/pdfstateinitializer";
 import { getPref } from "./utils/prefs";
+import { PDFHandToolHandler } from "./modules/PDFHandToolHandler";
+
 async function onStartup() {
   await Promise.all([
     Zotero.initializationPromise,
@@ -23,26 +25,10 @@ async function onStartup() {
 
   BasicExampleFactory.registerPrefs();
 
-  // BasicExampleFactory.registerNotifier();
-
-  // KeyExampleFactory.registerShortcuts();
-
-  // await UIExampleFactory.registerExtraColumn();
-
-  // await UIExampleFactory.registerExtraColumnWithCustomCell();
-
-  // UIExampleFactory.registerItemPaneCustomInfoRow();
-
-  // UIExampleFactory.registerItemPaneSection();
-
-  // UIExampleFactory.registerReaderItemPaneSection();
-
   await Promise.all(
     Zotero.getMainWindows().map((win) => onMainWindowLoad(win)),
   );
-
-  // PDFPreviewHandler.init(); // 新增初始化
-  // PDFStateInitializer.init();
+  
 }
 
 async function onMainWindowLoad(win: _ZoteroTypes.MainWindow): Promise<void> {
@@ -54,55 +40,13 @@ async function onMainWindowLoad(win: _ZoteroTypes.MainWindow): Promise<void> {
     `${addon.data.config.addonRef}-mainWindow.ftl`,
   );
 
-  const popupWin = new ztoolkit.ProgressWindow(addon.data.config.addonName, {
-    closeOnClick: true,
-    closeTime: -1,
-  })
-    .createLine({
-      text: getString("startup-begin"),
-      type: "default",
-      progress: 0,
-    })
-    .show();
-
-  await Zotero.Promise.delay(1000);
-  popupWin.changeLine({
-    progress: 30,
-    text: `[30%] ${getString("startup-begin")}`,
-  });
-
-  // UIExampleFactory.registerStyleSheet(win);
-
-  // UIExampleFactory.registerRightClickMenuItem();
-
-  // UIExampleFactory.registerRightClickMenuPopup(win);
-
-  // UIExampleFactory.registerWindowMenuWithSeparator();
-
-  // PromptExampleFactory.registerNormalCommandExample();
-
-  // PromptExampleFactory.registerAnonymousCommandExample(win);
-
-  // PromptExampleFactory.registerConditionalCommandExample();
-
-  await Zotero.Promise.delay(1000);
-
-  popupWin.changeLine({
-    progress: 100,
-    text: `[100%] ${getString("startup-finish")}`,
-  });
-  popupWin.startCloseTimer(5000);
-
-  // addon.hooks.onDialogEvents("dialogExample");
-
-  registerPreferenceListeners(win)
+  // registerPreferenceListeners(win)
   ztoolkit.log("============================================================================")
-  ztoolkit.log("============================================================================");
-
-  ztoolkit.log("预置首选项", getPref("pdfPreview.enabled"));
+  ztoolkit.log("预置每次打开首选项", getPref("pdfPreview.enabled"));
   ztoolkit.log("预置初始化首选项", getPref("pdfStateInit.enabled"));
   PDFPreviewHandler.init();
   PDFStateInitializer.init();
+  PDFHandToolHandler.init();
 }
 
 async function onMainWindowUnload(win: Window): Promise<void> {
@@ -136,7 +80,7 @@ async function onNotify(
     type == "tab" &&
     extraData[ids[0]].type == "reader"
   ) {
-    BasicExampleFactory.exampleNotifierCallback();
+    // BasicExampleFactory.exampleNotifierCallback();
   } else {
     return;
   }
@@ -151,8 +95,7 @@ async function onNotify(
 async function onPrefsEvent(type: string, data: { [key: string]: any }) {
   switch (type) {
     case "load":
-      registerPrefsScripts(data.window);
-      // registerPreferenceListeners(data.window);
+      registerPreferenceListeners(data.window);
       break;
     default:
       return;
@@ -162,10 +105,10 @@ async function onPrefsEvent(type: string, data: { [key: string]: any }) {
 function onShortcuts(type: string) {
   switch (type) {
     case "larger":
-      KeyExampleFactory.exampleShortcutLargerCallback();
+      // KeyExampleFactory.exampleShortcutLargerCallback();
       break;
     case "smaller":
-      KeyExampleFactory.exampleShortcutSmallerCallback();
+      // KeyExampleFactory.exampleShortcutSmallerCallback();
       break;
     default:
       break;
@@ -175,19 +118,19 @@ function onShortcuts(type: string) {
 function onDialogEvents(type: string) {
   switch (type) {
     case "dialogExample":
-      HelperExampleFactory.dialogExample();
+      // HelperExampleFactory.dialogExample();
       break;
     case "clipboardExample":
-      HelperExampleFactory.clipboardExample();
+      // HelperExampleFactory.clipboardExample();
       break;
     case "filePickerExample":
-      HelperExampleFactory.filePickerExample();
+      // HelperExampleFactory.filePickerExample();
       break;
     case "progressWindowExample":
-      HelperExampleFactory.progressWindowExample();
+      // HelperExampleFactory.progressWindowExample();
       break;
     case "vtableExample":
-      HelperExampleFactory.vtableExample();
+      // HelperExampleFactory.vtableExample();
       break;
     default:
       break;

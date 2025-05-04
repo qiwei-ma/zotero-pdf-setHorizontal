@@ -5,21 +5,21 @@
 
 This is a plugin for [Zotero](https://www.zotero.org/).
 
-[English](README.md) | [简体中文](doc/README-zhCN.md) | [Français](doc/README-frFR.md)
+[English](README.md) | [简体中文](doc/README-zhCN.md)
 
 > [!tip]
-> 👁 Customizing scroll direction and zoom scale is currently unstable and may occasionally cause items to fail to open. This will be fixed as soon as possible.
+> 👁 Add Wrapped Scrolling and Automaticlly Resize.
 
 ## Features
 
-- ⭐ [New!]  Automatically set the View when adding items (Recommended method).
-- Automatically set the View when an item is opened (Currently unstable, use with caution)
+- ⭐ [New!] Auto Enable Hand Tool
+- Automatically set the View when adding items (Recommended method).
 
 ## Examples
 
 ### Preference Pane Examples
 
-![1745154524765](image/README/1745154524765.png)
+![1745154524765](image/README/pref.png)
 
 ### Example of Auto Set View When Item First added
 
