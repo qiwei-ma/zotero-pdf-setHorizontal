@@ -44,4 +44,14 @@ export function registerPreferenceListeners(window: Window) {
     ztoolkit.log("【调试】Scale Mode 被设置为：", value);
     setPref("pdfPrefs.scale", value);
   });
+
+  // 监听 handTool 复选框的变化
+  const handTool = doc.querySelector<HTMLInputElement>(
+    `#${config.addonRef}-enableHandTool`,
+  );
+  handTool?.addEventListener("command", (e: Event) => {
+    const checked = (e.target as HTMLInputElement).checked;
+    ztoolkit.log("【调试】手型工具状态：", checked);
+    setPref("pdfHandTool.enabled", checked);
+  });
 }
