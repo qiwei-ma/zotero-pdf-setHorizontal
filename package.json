@@ -1,6 +1,6 @@
 {
   "name": "set-horizontal-scrolling",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Set horizontal scrolling and zooming to the page height as defaults.",
   "config": {
     "addonName": "Set HorizontalScroll",
