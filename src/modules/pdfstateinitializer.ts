@@ -1,15 +1,10 @@
 import { getPref } from "../utils/prefs";
 
-const scrollMode = getPref("pdfPrefs.scrollMode");
-const scale = getPref("pdfPrefs.scale");
-const zoom = getPref("pdfPrefs.scale");
-const enable = getPref("pdfStateInit.enabled");
-
 export class PDFStateInitializer {
   private static initialized = false;
 
   static init() {
-    if (this.initialized || !enable) return;
+    if (this.initialized || !getPref("pdfStateInit.enabled")) return;
     this.initialized = true;
 
     ztoolkit.log("PDFStateInitializer 初始化");
@@ -52,6 +47,9 @@ export class PDFStateInitializer {
   }
 
   private static async writeDefaultState(item: Zotero.Item) {
+    const scrollMode = getPref("pdfPrefs.scrollMode");
+    const scale = getPref("pdfPrefs.scale");
+    const zoom = getPref("pdfPrefs.scale");
     const defaultState = {
       pageIndex: 0,
       scrollMode: scrollMode,
