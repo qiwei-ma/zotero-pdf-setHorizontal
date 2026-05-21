@@ -32,5 +32,3 @@ This is a plugin for [Zotero](https://www.zotero.org/).
 ## Disclaimer
 
 Use this code under AGPL. No warranties are provided. Keep the laws of your locality in mind!
-
-

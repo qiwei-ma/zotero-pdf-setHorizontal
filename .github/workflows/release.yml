@@ -29,6 +29,14 @@ jobs:
       - name: Install deps
         run: npm install
 
+      - name: Verify release version
+        run: |
+          PACKAGE_VERSION="v$(node -p "require('./package.json').version")"
+          if [ "$PACKAGE_VERSION" != "${GITHUB_REF_NAME}" ]; then
+            echo "Tag ${GITHUB_REF_NAME} does not match package version ${PACKAGE_VERSION}"
+            exit 1
+          fi
+
       - name: Build
         run: |
           npm run build

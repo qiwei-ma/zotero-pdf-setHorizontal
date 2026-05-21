@@ -83,8 +83,8 @@ export class PDFHandToolHandler {
     return new Promise((resolve) => {
       const startTime = Date.now();
       const check = () => {
-        const pdfApp =
-          (reader as any)._iframeWindow?.wrappedJSObject?.PDFViewerApplication;
+        const pdfApp = (reader as any)._iframeWindow?.wrappedJSObject
+          ?.PDFViewerApplication;
         if (pdfApp?.initialized) {
           resolve(pdfApp);
         } else if (Date.now() - startTime < timeout) {
