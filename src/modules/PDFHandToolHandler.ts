@@ -33,6 +33,14 @@ export class PDFHandToolHandler {
     );
   }
 
+  static destroy() {
+    if (this.notifierID) {
+      Zotero.Notifier.unregisterObserver(this.notifierID);
+      this.notifierID = undefined;
+    }
+    this.initialized = false;
+  }
+
   private static async handlePDFOpen(itemIDs: number[], tabID?: string) {
     if (!getPref("pdfHandTool.enabled")) {
       return;
@@ -61,6 +69,9 @@ export class PDFHandToolHandler {
         }
 
         setTimeout(() => {
+          if (!this.initialized || !getPref("pdfHandTool.enabled")) {
+            return;
+          }
           try {
             (reader as any).toggleHandTool?.(true);
           } catch (e) {

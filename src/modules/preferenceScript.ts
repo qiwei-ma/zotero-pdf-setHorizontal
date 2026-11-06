@@ -1,5 +1,6 @@
 import { config } from "../../package.json";
 import { setPref } from "../utils/prefs";
+import { PDFHandToolHandler } from "./PDFHandToolHandler";
 
 export function registerPreferenceListeners(window: Window) {
   const doc = window?.document;
@@ -53,5 +54,8 @@ export function registerPreferenceListeners(window: Window) {
     const checked = (e.target as HTMLInputElement).checked;
     ztoolkit.log("【调试】手型工具状态：", checked);
     setPref("pdfHandTool.enabled", checked);
+    if (checked) {
+      PDFHandToolHandler.init();
+    }
   });
 }

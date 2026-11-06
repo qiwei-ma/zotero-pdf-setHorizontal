@@ -56,6 +56,7 @@ async function onMainWindowUnload(win: Window): Promise<void> {
 }
 
 function onShutdown(): void {
+  PDFHandToolHandler.destroy();
   ztoolkit.unregisterAll();
   addon.data.dialog?.window?.close();
   // Remove addon object
